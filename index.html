@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Key Detection</title>
+    <script type="text/javascript" src="https://www.cornify.com/js/cornify.js"></script>
+</head>
+
+<body>
+    <script>
+        // EMpty array to store key presses that match the KONAMI Code keys
+        const keysPressed = [];
+        const secretCode = 'sesame';
+
+        // Event Listener that pushes matching keys into the array
+        window.addEventListener('keyup', (e) => {
+            console.log(e.key);
+            keysPressed.push(e.key);
+            // Use splice to only check the most recent n characters typed, where n is the length of the password
+            keysPressed.splice(-secretCode.length - 1, keysPressed.length - secretCode.length)
+            // Join keysPressed characters into a string and then see if it includes the same content as the secretCode
+            if (keysPressed.join('').includes(secretCode)) {
+                // Output success message to tell user that they have won
+                console.log('We have a winner! Nice!');
+                // Add unicorns and rainbows to the celebration using cornify
+                cornify_add();
+            }
+            console.log(keysPressed);
+
+        })
+    </script>
+</body>
+
+</html>
